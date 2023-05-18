@@ -27,7 +27,7 @@ def test_student_registration_form(browser_setup):
 
     browser.element('#uploadPicture').set_value(
         os.path.abspath(
-            os.path.join(os.path.dirname(__file__), 'resources/0.jpeg')
+            os.path.join(os.path.dirname(tests.__file__), 'resources/0.jpeg')
         )
     )
 
