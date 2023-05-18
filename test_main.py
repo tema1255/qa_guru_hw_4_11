@@ -8,8 +8,6 @@ def test_student_registration_form(browser_setup):
     browser.element('#firstName').type('Artem')
     browser.element('#lastName').type('Chekanov')
     browser.element('#userEmail').type('tema-42@mail.ru')
-    # browser.all('[name=gender]').element_by(have.value('Male')).click()
-    # browser.element('[name=gender][value="Male"]+label').click()
     browser.all('[for^=gender-radio]').element_by(have.text('Male')).click()
     browser.element('#userNumber').type('9876543210')
 
@@ -23,11 +21,10 @@ def test_student_registration_form(browser_setup):
         'eng'
     ).press_enter()
     browser.driver.execute_script('window.scrollTo(0,300)')
-    # browser.all(['for^=hobbies-checkbox']).element_by(have.value('Sports')).click()
+
     browser.element('[for=hobbies-checkbox-1]').click()
     browser.element('[for=hobbies-checkbox-3]').click()
 
-    # browser.element('#uploadPicture').send_keys(os.getcwd() + '/0.jpeg')
     browser.element('#uploadPicture').set_value(
         os.path.abspath(
             os.path.join(os.path.dirname(__file__), 'resources/0.jpeg')
