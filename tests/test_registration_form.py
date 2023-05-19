@@ -1,35 +1,14 @@
 import os
 import tests
 import allure
-from selene import browser, command, have
-from selene.support.shared import browser
-from selenium import webdriver
-from utils import attach
-from selenium.webdriver.chrome.options import Options
+from selene import command, have
 
 @allure.title('Successful fill form')
 @allure.step('Fill form')
-def test_student_registration_form():
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": True
-        }
-    }
-    options.capabilities.update(selenoid_capabilities)
-
-    driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options)
-    browser.config.driver = driver
+def test_student_registration_form(setup_browser):
+    browser = setup_browser
 
     with allure.step('Open registration form'):
-        browser.config.window_width = 1280
-        browser.config.window_height = 768
-        # browser.config.hold_browser_open = True
         browser.open('https://demoqa.com/automation-practice-form')
         browser.driver.execute_script("$('footer').remove()")
         browser.driver.execute_script("$('#fixedban').remove()")
@@ -89,9 +68,3 @@ def test_student_registration_form():
                 'Haryana Karnal',
             )
         )
-
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
-
