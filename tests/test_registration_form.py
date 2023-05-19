@@ -31,6 +31,8 @@ def test_student_registration_form():
         browser.config.window_height = 768
         browser.config.hold_browser_open = True
         browser.open('https://demoqa.com/automation-practice-form')
+        browser.driver.execute_script("$('footer').remove()")
+        browser.driver.execute_script("$('#fixedban').remove()")
 
     with allure.step('fill form'):
         browser.element('#firstName').type('Artem')
