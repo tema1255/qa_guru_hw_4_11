@@ -3,6 +3,7 @@ import tests
 import allure
 from selene import command, have
 
+
 @allure.title('Successful fill form')
 @allure.step('Fill form')
 def test_student_registration_form(setup_browser):
@@ -36,7 +37,7 @@ def test_student_registration_form(setup_browser):
 
         browser.element('#uploadPicture').set_value(
             os.path.abspath(
-                os.path.join(os.path.dirname(tests.__file__), 'resources/0.jpeg')
+                os.path.join(os.path.dirname(__file__), 'resources/0.jpeg')
             )
         )
 
